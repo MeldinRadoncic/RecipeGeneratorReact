@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputField from "./InputField";
 import Button from "./Button";
 import baseUrl from "../config/baseUrl";
+import Loading from "./Loading";
 
 const Form = ({ onSubmit }) => {
   const [formData, setFormData] =
@@ -75,6 +76,7 @@ const Form = ({ onSubmit }) => {
             label='food'
             type='text'
             id='food'
+            required
             name='food'
             placeholder='Enter your ingredients'
             onChange={(value) =>
@@ -123,14 +125,17 @@ const Form = ({ onSubmit }) => {
         </div>
 
         <div>
-          <Button
-            label="Let's Cook!"
-            type={"submit"}
-            className={
-              "primary-button mt-6 mx-auto w-full mt-8"
-            }
-          />
-        </div>
+  <Button
+    label={loading ? <Loading /> : "Let's Cook!"}
+    disabled={loading}
+    type={"submit"}
+    className={
+      loading
+        ? "disabled-button primary-button mt-6 mx-auto w-full mt-8"
+        : "primary-button mt-6 mx-auto w-full mt-8"
+    }
+  />
+</div>
 
         {error && (
           <p className='error mt-4 text-red-500 text-center'>

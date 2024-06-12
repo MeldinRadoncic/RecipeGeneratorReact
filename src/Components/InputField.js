@@ -8,7 +8,7 @@ const InputField = ({ label, id, name, type, placeholder, onChange, value, optio
 
     return (
         <>
-            <label htmlFor={id} className="block text-xl md:text-2xl text-extrabold mb-2">
+            <label htmlFor={id} className="block text-2xl md:text-2xl text-extrabold mb-2">
                 {label}
             </label>
             {options ? (
@@ -29,11 +29,12 @@ const InputField = ({ label, id, name, type, placeholder, onChange, value, optio
                 <input
                     type={type}
                     id={id}
+                    required
                     name={name}
                     placeholder={placeholder}
                     onChange={handleChange}
                     value={value}
-                    className="w-full px-4 py-2 text-xl rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-4 py-2 text-2xl rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
                 />
             )}
         </>
