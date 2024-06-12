@@ -1,4 +1,4 @@
-const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/generate_recipe' : process.env.PROD_URL;
+const baseUrl = process.env.REACT_APP_ENV === 'development' ? 'http://localhost:5000' : process.env.REACT_APP_API_URL;
 
 
 

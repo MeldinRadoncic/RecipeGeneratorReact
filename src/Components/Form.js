@@ -35,7 +35,7 @@ const Form = ({ onSubmit }) => {
 
     try {
       const response = await fetch(
-        'https://recipe-generator-langchain.onrender.com/api/generate_recipe',
+        `${baseUrl}/api/generate_recipe`,
         {
           method: "POST",
           headers: {
