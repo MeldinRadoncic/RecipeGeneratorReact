@@ -59,8 +59,8 @@ export const downloadPDF = (data) => {
 
     img.onload = async () => {
         // Scale down the image size
-        const imgWidth = pdfWidth / 2; // Make the image smaller
-        const imgHeight = (img.height * imgWidth) / img.width;
+        let imgWidth = pdfWidth / 2; // Make the image smaller
+        let imgHeight = (img.height * imgWidth) / img.width;
         if (currentY + imgHeight > pdfHeight) {
             pdf.addPage();
             currentY = 10; // Reset Y position for new page
@@ -71,18 +71,22 @@ export const downloadPDF = (data) => {
         currentY += imgHeight + 10; // Update Y position
 
         // Set the text size and font
-        pdf.setFontSize(12);
+        pdf.setFontSize(14);
         pdf.setFont("helvetica");
 
         // Add the recipe text
-        pdf.setFontSize(16);
+        pdf.setFontSize(14);
         pdf.text(10, currentY, 'Recipe:');
-        pdf.setFontSize(12);
+        pdf.setFontSize(14);
         const lines = pdf.splitTextToSize(data.recipe, pdfWidth - 20);
         lines.forEach((line, index) => {
             if (currentY + 7 * (index + 1) > pdfHeight) { // 7 for smaller line height
                 pdf.addPage();
                 currentY = 10;
+                // Don't add the image again
+                imgHeight = 0;
+                imgWidth = 0;
+                
             }
             pdf.text(10, currentY + 7 * (index + 1), line); // 7 for smaller line height
         });
